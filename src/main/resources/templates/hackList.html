@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:insert="base :: header"></th:block>
+
+</head>
+<body>
+<div th:replace="base :: navlinks"></div>
+<!--<div class="jumbotron text-center">-->
+    <!--<h1>Welcome Hackers!</h1>-->
+<!--</div>-->
+<div class="container">
+
+
+    <div class="w3-card-4 col-sm-3" style="width:500px;">
+        <div th:each="hack : ${hackathon}">
+
+            <span th:text="${hack.name}"></span>
+            <br/>
+            <span th:text="${hack.startDate}"></span>
+            <br />
+            <span th:text="${hack.endDate}"></span>
+            <br />
+            <span th:text="${hack.city}"></span>
+            <br/>
+            <span th:text="${hack.state}"></span>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
