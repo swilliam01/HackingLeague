@@ -13,12 +13,13 @@
 <!--</div>-->
 <div class="container">
 
-
-    <div class="w3-card-4 col-sm-3" style="width:500px;">
+    <div class="w3-card-4 col-sm-3" style="width:300px;">
         <div th:each="hack : ${hackathon}">
 
             <span th:text="${hack.name}"></span>
             <br/>
+            <img th:src="${hack.headshot}" alt="place" style="width:250px"/>
+            <br />
             <span th:text="${hack.startDate}"></span>
             <br />
             <span th:text="${hack.endDate}"></span>
@@ -26,7 +27,7 @@
             <span th:text="${hack.city}"></span>
             <br/>
             <span th:text="${hack.state}"></span>
-
+            <br />
         </div>
     </div>
 </div>

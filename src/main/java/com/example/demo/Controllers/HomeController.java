@@ -1,18 +1,21 @@
 package com.example.demo.Controllers;
 
+import com.cloudinary.utils.ObjectUtils;
+import com.example.demo.CloudinaryConfig;
 import com.example.demo.Repositories.HackRepo;
 import com.example.demo.Repositories.SponsorRepo;
 import com.example.demo.models.Hackathon;
+import com.example.demo.models.Sponsor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
+import java.util.Map;
 
 @Controller
 public class HomeController {
@@ -21,6 +24,9 @@ public class HomeController {
 
     @Autowired
     SponsorRepo sponsorRepo;
+
+    @Autowired
+    CloudinaryConfig cloudc;
 
     @RequestMapping("/")
     public String hackListing(Model model){
@@ -32,19 +38,46 @@ public class HomeController {
         model.addAttribute("hackathon", new Hackathon());
         return"addHackathon";
     }
-    @PostMapping("/addHack")
+    @PostMapping("/processHack")
     public String processRegistrationPage(@Valid
                                           @ModelAttribute("hackathon") Hackathon hackathon, BindingResult result,
-                                          Model model){
-        model.addAttribute("hackathon",hackathon);
+                                          @RequestParam("file") MultipartFile file){
         if (result.hasErrors()){
             return "addHackathon";
         }
-        else{
+       // hackathon.se(userService.getUser());
             hackRepo.save(hackathon);
+        if (file.isEmpty()) {
+            return "hackList";
+        }
+        try {
+            Map uploadResult = cloudc.upload(file.getBytes(),
+                    ObjectUtils.asMap("resourcetype", "auto"));
+            hackathon.setHeadshot(uploadResult.get("url").toString());
+            hackRepo.save(hackathon);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "hackList";
+        }
+
+        return "redirect:/";
+    }
+    @GetMapping("/addsponsor")
+    public String showAddSponsorPage(Model model){
+        model.addAttribute("sponsor", new Sponsor());
+        return"sponsorForm";
+    }
+    @PostMapping("/addsponsor")
+    public String processAddSponsorPage(@Valid
+                                          @ModelAttribute("sponsor") Sponsor sponsor, BindingResult result,
+                                          Model model){
+        model.addAttribute("sponsor",sponsor);
+        if (result.hasErrors()){
+            return "sponsorForm";
+        }
+        else{
+            sponsorRepo.save(sponsor);
         }
         return "redirect:/";
     }
-
-
 }

@@ -33,7 +33,10 @@ public class Hackathon {
         @Size(min = 2 )
         private String state;
 
-        @ManyToMany(fetch = FetchType.EAGER)
+        private String headshot;
+
+
+    @ManyToMany(fetch = FetchType.EAGER)
         @JoinTable(joinColumns = @JoinColumn(name = "hackathon_id"), inverseJoinColumns = @JoinColumn(name = "sponsor_id"))
         private Collection<Sponsor> sponsors;
 
@@ -48,7 +51,15 @@ public class Hackathon {
                 this.sponsors = sponsors;
         }
 
-        public long getId() {
+    public String getHeadshot() {
+        return headshot;
+    }
+
+    public void setHeadshot(String headshot) {
+        this.headshot = headshot;
+    }
+
+    public long getId() {
                 return id;
         }
 
