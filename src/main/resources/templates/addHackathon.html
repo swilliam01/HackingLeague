@@ -7,8 +7,8 @@
 </head>
 <body>
 <div th:replace="base :: navlinks"></div>
-<div class="container" align="center">
-    <h2 class="text-center"><b>New Hackathon</b></h2><br />
+<div class="container">
+    <h2 align="center"><b>New Hackathon</b></h2><br />
     <form autocomplete="off"
           action="/action_page.php"
           th:action="@{/processHack}"
@@ -45,6 +45,11 @@
               th:errors="*{state}">State Error</span>
         <input type="text" id="state" class="form-control" placeholder="state"
                th:field="*{state}" /><br />
+        <label for="state">Hackathon Website:</label>
+        <span th:if="${#fields.hasErrors('webLink')}"
+              th:errors="*{webLink}">Web Error</span>
+        <input type="text" id="webLink" class="form-control" placeholder="website"
+               th:field="*{webLink}" /><br />
         <br/>
             <label>Add  Image</label><br/>
             <input type="file" class="form-control" name="file"/>

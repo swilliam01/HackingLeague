@@ -1,35 +1,46 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <th:block th:insert="base :: header"></th:block>
+    <style>
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+            /*margin: auto;*/
+            text-align: center;
+            font-family: arial;
+            columns: fill-available;
+            column-count: 3;
+        }
 
+
+        body {
+            background-image: url("https://media.istockphoto.com/vectors/protect-mechanism-system-privacy-vector-illustration-vector-id970924200?s=2048x2048");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
 </head>
 <body>
 <div th:replace="base :: navlinks"></div>
 <!--<div class="jumbotron text-center">-->
-    <!--<h1>Welcome Hackers!</h1>-->
+<!--<h1>Welcome Hackers!</h1>-->
 <!--</div>-->
+
 <div class="container">
-
-    <div class="w3-card-4 col-sm-3" style="width:300px;">
-        <div th:each="hack : ${hackathon}">
-
-            <span th:text="${hack.name}"></span>
-            <br/>
-            <img th:src="${hack.headshot}" alt="place" style="width:250px"/>
-            <br />
-            <span th:text="${hack.startDate}"></span>
-            <br />
-            <span th:text="${hack.endDate}"></span>
-            <br />
-            <span th:text="${hack.city}"></span>
-            <br/>
-            <span th:text="${hack.state}"></span>
-            <br />
+<div class="row">
+    <div th:each="hack : ${hackathon}">
+        <div class="card">
+            <a th:href="@{${hack.webLink}}" target="_blank"> <img th:src="${hack.headshot}" alt="place" style="width: 100%" /></a>
+            <p class="title">Start Date:<span th:text="${hack.startDate}"></span></p>
+            <p class="title">End Date:<span th:text="${hack.endDate}"></span></p>
+            <p><span th:text="${hack.city}"></span>
+                <span th:text="${hack.state}"></span></p>
         </div>
     </div>
+</div>
 </div>
 </body>
 </html>

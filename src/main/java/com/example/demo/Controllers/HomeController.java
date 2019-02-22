@@ -48,13 +48,14 @@ public class HomeController {
        // hackathon.se(userService.getUser());
             hackRepo.save(hackathon);
         if (file.isEmpty()) {
-            return "hackList";
+            return "addHackathon";
         }
         try {
             Map uploadResult = cloudc.upload(file.getBytes(),
                     ObjectUtils.asMap("resourcetype", "auto"));
             hackathon.setHeadshot(uploadResult.get("url").toString());
             hackRepo.save(hackathon);
+
         } catch (IOException e) {
             e.printStackTrace();
             return "hackList";
@@ -62,6 +63,7 @@ public class HomeController {
 
         return "redirect:/";
     }
+
     @GetMapping("/addsponsor")
     public String showAddSponsorPage(Model model){
         model.addAttribute("sponsor", new Sponsor());

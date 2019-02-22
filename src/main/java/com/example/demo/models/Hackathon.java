@@ -7,6 +7,7 @@ import javax.validation.constraints.Size;
 import java.util.Collection;
 
 @Entity
+@Table(name = "Hack_Sponsor")
 public class Hackathon {
 
         @Id
@@ -33,6 +34,10 @@ public class Hackathon {
         @Size(min = 2 )
         private String state;
 
+        @NotNull
+        @Size(min = 2)
+        private String webLink;
+
         private String headshot;
 
 
@@ -43,13 +48,17 @@ public class Hackathon {
     public Hackathon() {
     }
 
-        public Hackathon(@NotNull @Size(min = 3) String name, @NotNull @Size(min = 3) String startDate, @NotNull @Size(min = 4) String endDate, @NotNull @Size(min = 3) String city, @NotNull @Size(min = 2) String state, Collection<Sponsor> sponsors) {
-                this.startDate = startDate;
-                this.endDate = endDate;
-                this.city = city;
-                this.state = state;
-                this.sponsors = sponsors;
-        }
+    public Hackathon(@NotNull @Size(min = 3) String name, @NotNull @Size(min = 3) String startDate, @NotNull @Size(min = 4) String endDate, @NotNull @Size(min = 3) String city, @NotNull @Size(min = 2) String state, @NotNull @Size(min = 2)
+            String webLink, String headshot, Collection<Sponsor> sponsors) {
+        this.name = name;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.city = city;
+        this.state = state;
+        this.webLink = webLink;
+        this.headshot = headshot;
+        this.sponsors = sponsors;
+    }
 
     public String getHeadshot() {
         return headshot;
@@ -111,7 +120,15 @@ public class Hackathon {
                 return sponsors;
         }
 
-        public void setSponsors(Collection<Sponsor> sponsors) {
+    public String getWebLink() {
+        return webLink;
+    }
+
+    public void setWebLink(String webLink) {
+        this.webLink = webLink;
+    }
+
+    public void setSponsors(Collection<Sponsor> sponsors) {
                 this.sponsors = sponsors;
         }
 }
