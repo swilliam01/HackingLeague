@@ -20,7 +20,7 @@
               th:errors="*{firstName}">First Name Error</span>
         <input type="firstname" name="firstName" id="firstName" class="form-control" placeholder="First Name"
                th:field="*{firstName}" />
-
+        <br />
         <label for="lastName">Last Name:</label><br>
         <span th:if="${#fields.hasErrors('lastName')}"
               th:errors="*{lastName}">Last Name Error</span>

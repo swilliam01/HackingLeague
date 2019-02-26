@@ -19,6 +19,11 @@ import java.util.Map;
 
 @Controller
 public class HomeController {
+
+
+    @Autowired
+    EmailService emailService;
+
     @Autowired
     HackRepo hackRepo;
 
@@ -77,6 +82,7 @@ public class HomeController {
         model.addAttribute("sponsor", new Sponsor());
         return"sponsorForm";
     }
+
     @PostMapping("/addsponsor")
     public String processAddSponsorPage(@Valid
                                           @ModelAttribute("sponsor") Sponsor sponsor, BindingResult result,
@@ -85,9 +91,9 @@ public class HomeController {
         if (result.hasErrors()){
             return "sponsorForm";
         }
-        else{
             sponsorRepo.save(sponsor);
-        }
-        return "redirect:/";
+            String getEmailTo = sponsor.getEmail();
+            emailService.SendSimpleEmail(getEmailTo,"Thank you for providing your information. You will be contacted soon for further course of action.");
+        return "success";
     }
 }

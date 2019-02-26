@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:insert="base :: header"></th:block>
+    <style>
+        .jumbotron{
+            text-align: center;
+            background-color: black;
+            padding: 70px;
+        }
+        h1{
+            font-family: "Britannic Bold";
+            color: coral;
+        }
+        img{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 50%;
+        }
+        .container{
+            alignment: center;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="base :: navlinks"></div>
+<div class="jumbotron">
+    <h1>--Become A Sponsor---</h1>
+</div>
+<div class="container">
+<h4>An email has been sent successfully to your email address, you will be contacted soon. Thank you!</h4><br>
+<br/>
+<img src="https://images.unsplash.com/photo-1525423186417-45cade1b79c0?ixlib=rb-1.2.1&auto=format&fit=crop&w=689&q=80">
+</div>
+</body>
+</html>
