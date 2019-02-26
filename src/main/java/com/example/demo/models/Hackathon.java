@@ -64,7 +64,8 @@ public class Hackathon {
         return headshot;
     }
 
-    public void setHeadshot(String headshot) {
+    public void setHeadshot(String headshot)
+    {
         this.headshot = headshot;
     }
 

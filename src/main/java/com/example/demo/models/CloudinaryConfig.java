@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.models;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.Singleton;
@@ -13,6 +13,7 @@ import java.util.Map;
 @Component
 public class CloudinaryConfig {
     private Cloudinary cloudinary;
+
     @Autowired
     public CloudinaryConfig (@Value("${cloud.key}") String key,
                              @Value("${cloud.secret}") String secret,

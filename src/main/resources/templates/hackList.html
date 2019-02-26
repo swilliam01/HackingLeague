@@ -10,16 +10,36 @@
             max-width: 300px;
             /*margin: auto;*/
             text-align: center;
-            font-family: arial;
-            columns: fill-available;
-            column-count: 3;
+            column-count: 4;
+        }
+        .jumbotron{
+            font-family: "Berlin Sans FB";
+            text-align: center;
+            color: black;
+            background-image: url("https://images.unsplash.com/photo-1533908279087-2448f4554f18?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80");
+            background-size: cover;
+            background-position: center;
+            padding: 200px;
+        }
+        h2{
+            font-size:40px;
+            color: coral;
+            text-decoration: white;
         }
 
-
         body {
-            background-image: url("https://media.istockphoto.com/vectors/protect-mechanism-system-privacy-vector-illustration-vector-id970924200?s=2048x2048");
-            background-repeat: no-repeat;
-            background-size: cover;
+            background-color: black;
+        }
+        .container{
+            background-color: black;
+        }
+        p{
+            font-family: "Arial Black";
+            font-style: normal;
+        }
+        h3{
+            font-family: "Bernard MT Condensed";
+            font-style: initial;
         }
     </style>
 </head>
@@ -28,15 +48,18 @@
 <!--<div class="jumbotron text-center">-->
 <!--<h1>Welcome Hackers!</h1>-->
 <!--</div>-->
-
+<div class="jumbotron">
+    <h2>----Welcome Hackers----</h2>
+</div>
 <div class="container">
 <div class="row">
     <div th:each="hack : ${hackathon}">
         <div class="card">
-            <a th:href="@{${hack.webLink}}" target="_blank"> <img th:src="${hack.headshot}" alt="place" style="width: 100%" /></a>
-            <p class="title">Start Date:<span th:text="${hack.startDate}"></span></p>
-            <p class="title">End Date:<span th:text="${hack.endDate}"></span></p>
-            <p><span th:text="${hack.city}"></span>
+            <a th:href="@{${hack.webLink}}" target="_blank"> <img th:src="${hack.headshot}"width="300" height="250" border="2px_solid_black" crop="pad"  /></a>
+            <h3><span th:text="${hack.name}"></span></h3>
+            <p> <span th:text="${hack.startDate}"></span>-
+            <span th:text="${hack.endDate}"></span></p>
+            <p><span th:text="${hack.city}"></span>,
                 <span th:text="${hack.state}"></span></p>
         </div>
     </div>

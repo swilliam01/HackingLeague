@@ -1,7 +1,7 @@
 package com.example.demo.Controllers;
 
 import com.cloudinary.utils.ObjectUtils;
-import com.example.demo.CloudinaryConfig;
+import com.example.demo.models.CloudinaryConfig;
 import com.example.demo.Repositories.HackRepo;
 import com.example.demo.Repositories.SponsorRepo;
 import com.example.demo.models.Hackathon;
@@ -29,10 +29,16 @@ public class HomeController {
     CloudinaryConfig cloudc;
 
     @RequestMapping("/")
-    public String hackListing(Model model){
+    public String homepage(){
+        return "base";
+    }
+
+    @RequestMapping("/list")
+    public String hacklisting(Model model){
         model.addAttribute("hackathon", hackRepo.findAll());
         return "hackList";
     }
+
     @GetMapping("/addHack")
     public String showRegistrationPage(Model model){
         model.addAttribute("hackathon", new Hackathon());
@@ -53,7 +59,9 @@ public class HomeController {
         try {
             Map uploadResult = cloudc.upload(file.getBytes(),
                     ObjectUtils.asMap("resourcetype", "auto"));
-            hackathon.setHeadshot(uploadResult.get("url").toString());
+            String headshotURL = uploadResult.get("url").toString();
+//            String getUrl = cloudc.createUrl(headshotURL,100,100,"pad");
+            hackathon.setHeadshot(headshotURL);
             hackRepo.save(hackathon);
 
         } catch (IOException e) {

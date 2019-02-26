@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:font-style="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -11,11 +11,9 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
         <style>
             .nav {
-                background-color: black;
-                list-style-type: none;
-                text-align: center;
-                margin: 0;
-                padding: 0;
+                background-color: gray;
+                /*list-style-type: ;*/
+                /*text-align: center;*/
             }
             .nav li {
                 display: inline-block;
@@ -28,22 +26,40 @@
                 background-color: white;
                 padding: 30px;
             }
+            b {
+                font-family: "Bernard MT Condensed";
+                color: coral;
+            }
+
         </style>
     </th:block>
+
 <style>
     body {
-        background-image:url('https://thumbs.dreamstime.com/z/security-concept-red-shield-keyhole-digital-background-d-render-39533437.jpg');
+        background-image: url("https://images.unsplash.com/photo-1504384764586-bb4cdc1707b0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80");
         background-repeat: no-repeat;
-        background-position:center top;
+        background-size: cover;
+    }
+    .jumbotron{
+        background-color: black;
+        text-align: center;
+    }
+    h1{
+        font-family: "Britannic Bold";
+        color: white;
+    }
+    h2{
+        font-family: "Britannic Bold";
+        color: coral;
     }
 </style>
 </head>
 <body>
 <div th:fragment="navlinks">
     <div class="w3-container">
-        <div class="w3-bar w3-border w3-black">
-            <a class="w3-bar-item"><b>MC HACKING LEAGUE</b></a>
-            <a href="/hackList" class="w3-bar-item w3-button w3-right">ATTEND</a>
+        <div class="w3-bar w3-black">
+            <a class="w3-bar-item w3-left" ><h4><b>THL</b></h4></a>
+            <a href="/list" class="w3-bar-item w3-button w3-right">ATTEND</a>
             <a href="/addsponsor" class="w3-bar-item w3-button w3-right">SPONSOR</a>
             <a href="/" class="w3-bar-item w3-button w3-left">HOME</a>
             <a href="/addHack" class="w3-bar-item w3-button w3-left">Add Hackathon</a>
@@ -51,6 +67,10 @@
     </div>
 
     </ul>
+</div>
+<div class="jumbotron">
+<h1>THE HACKING LEAGUE</h1>
+    <h2>LEARN.BUILD.SHARE</h2>
 </div>
 
 </body>
