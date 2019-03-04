@@ -1,11 +1,12 @@
 package com.example.demo.Controllers;
 
 import com.cloudinary.utils.ObjectUtils;
-import com.example.demo.models.CloudinaryConfig;
+import com.example.demo.Services.EmailService;
+import com.example.demo.Models.CloudinaryConfig;
 import com.example.demo.Repositories.HackRepo;
 import com.example.demo.Repositories.SponsorRepo;
-import com.example.demo.models.Hackathon;
-import com.example.demo.models.Sponsor;
+import com.example.demo.Models.Hackathon;
+import com.example.demo.Models.Sponsor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,6 +36,7 @@ public class HomeController {
 
     @RequestMapping("/")
     public String homepage(){
+
         return "base";
     }
 
@@ -65,7 +67,6 @@ public class HomeController {
             Map uploadResult = cloudc.upload(file.getBytes(),
                     ObjectUtils.asMap("resourcetype", "auto"));
             String headshotURL = uploadResult.get("url").toString();
-//            String getUrl = cloudc.createUrl(headshotURL,100,100,"pad");
             hackathon.setHeadshot(headshotURL);
             hackRepo.save(hackathon);
 

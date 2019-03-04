@@ -7,31 +7,33 @@
     <style>
         .card {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-            max-width: 300px;
-            /*margin: auto;*/
+            max-width: fit-content;
             text-align: center;
-            column-count: 4;
+            margin-left: auto;
+            margin-right: auto;
         }
         .jumbotron{
-            font-family: "Berlin Sans FB";
+            font-family: "Bernard MT Condensed";
             text-align: center;
-            color: black;
-            background-image: url("https://images.unsplash.com/photo-1533908279087-2448f4554f18?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80");
+            background-image: url("https://images.unsplash.com/photo-1541970121255-b7cfb046db34?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80");
             background-size: cover;
             background-position: center;
             padding: 200px;
         }
+        h1{
+            font-size: 60px;
+            color: black;
+        }
         h2{
             font-size:40px;
-            color: coral;
-            text-decoration: white;
+            color: darkorange;
+            font-family: "Bernard MT Condensed";
         }
 
-        body {
-            background-color: black;
-        }
         .container{
-            background-color: black;
+            background-color: white;
+            text-align: center;
+            color: white;
         }
         p{
             font-family: "Arial Black";
@@ -49,21 +51,28 @@
 <!--<h1>Welcome Hackers!</h1>-->
 <!--</div>-->
 <div class="jumbotron">
-    <h2>----Welcome Hackers----</h2>
+    <h1>Welcome Hackers!</h1><br/>
+    <h2>Find, compete, and earn points for your school at the largest, most diverse student hackathons in the world.</h2>
 </div>
 <div class="container">
+    <h1>Upcoming Hackathons</h1><br/>
+    <br />
 <div class="row">
     <div th:each="hack : ${hackathon}">
-        <div class="card">
-            <a th:href="@{${hack.webLink}}" target="_blank"> <img th:src="${hack.headshot}"width="300" height="250" border="2px_solid_black" crop="pad"  /></a>
+        <div class="card col-md-4">
+            <a th:href="@{${hack.webLink}}" target="_blank" th:title="@{${hack.name}}" >
+                <img th:src="${hack.headshot}"width="300" height="250" border="2px_solid_black" crop="pad"  />
             <h3><span th:text="${hack.name}"></span></h3>
-            <p> <span th:text="${hack.startDate}"></span>-
+            <p> <span th:text="${hack.startDate}"></span>
             <span th:text="${hack.endDate}"></span></p>
             <p><span th:text="${hack.city}"></span>,
                 <span th:text="${hack.state}"></span></p>
-        </div>
-    </div>
-</div>
+            </a>
+        </div><br/>
+    </div><br />
+    <br/>
+</div><br />
+    <br />
 </div>
 </body>
 </html>

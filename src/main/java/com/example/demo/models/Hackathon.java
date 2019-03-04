@@ -1,4 +1,4 @@
-package com.example.demo.models;
+package com.example.demo.Models;
 
 
 import javax.persistence.*;
@@ -40,6 +40,8 @@ public class Hackathon {
 
         private String headshot;
 
+        private int counter;
+
 
     @ManyToMany(fetch = FetchType.EAGER)
         @JoinTable(joinColumns = @JoinColumn(name = "hackathon_id"), inverseJoinColumns = @JoinColumn(name = "sponsor_id"))
@@ -49,7 +51,7 @@ public class Hackathon {
     }
 
     public Hackathon(@NotNull @Size(min = 3) String name, @NotNull @Size(min = 3) String startDate, @NotNull @Size(min = 4) String endDate, @NotNull @Size(min = 3) String city, @NotNull @Size(min = 2) String state, @NotNull @Size(min = 2)
-            String webLink, String headshot, Collection<Sponsor> sponsors) {
+            String webLink, String headshot, int counter, Collection<Sponsor> sponsors) {
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -57,6 +59,7 @@ public class Hackathon {
         this.state = state;
         this.webLink = webLink;
         this.headshot = headshot;
+        this.counter = counter;
         this.sponsors = sponsors;
     }
 
@@ -132,5 +135,13 @@ public class Hackathon {
     public void setSponsors(Collection<Sponsor> sponsors) {
                 this.sponsors = sponsors;
         }
+
+    public int getCounter() {
+        return counter;
+    }
+
+    public void setCounter(int counter) {
+        this.counter = counter;
+    }
 }
 

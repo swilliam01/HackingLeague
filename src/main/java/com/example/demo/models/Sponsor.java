@@ -1,6 +1,4 @@
-package com.example.demo.models;
-
-import com.example.demo.models.Hackathon;
+package com.example.demo.Models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

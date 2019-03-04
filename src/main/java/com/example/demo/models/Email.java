@@ -1,4 +1,4 @@
-package com.example.demo.models;
+package com.example.demo.Models;
 
 public class Email {
     private String emailTo;
