@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" >
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -9,13 +9,19 @@
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
             max-width: fit-content;
             text-align: center;
+            /*row-gap:100px;*/
             margin-left: auto;
             margin-right: auto;
+        }
+        .col-md-15{
+            column-count: auto;
+            padding-right: 10px;
+
         }
         .jumbotron{
             font-family: "Bernard MT Condensed";
             text-align: center;
-            background-image: url("https://images.unsplash.com/photo-1541970121255-b7cfb046db34?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80");
+            background-image: url(".. /img/hackerds.jpeg");
             background-size: cover;
             background-position: center;
             padding: 200px;
@@ -43,7 +49,8 @@
             font-family: "Bernard MT Condensed";
             font-style: initial;
         }
-    </style>
+        <img src="../static/img/hackerds.jpeg" height="1230" width="1880"/><img src="../static/img/hackerds.jpeg"
+                                                                                height="1230" width="1880"/></style>
 </head>
 <body>
 <div th:replace="base :: navlinks"></div>
@@ -59,18 +66,20 @@
     <br />
 <div class="row">
     <div th:each="hack : ${hackathon}">
-        <div class="card col-md-4">
-            <a th:href="@{${hack.webLink}}" target="_blank" th:title="@{${hack.name}}" >
-                <img th:src="${hack.headshot}"width="300" height="250" border="2px_solid_black" crop="pad"  />
+       <div class="col-md-15">
+         <div class="card" >
+            <a class="test-light" th:href="@{/counter/{id}(id=${hack.id})}"  target="_blank" th:title="@{${hack.name}}" >
+                <img th:src="${hack.headshot}"width="250" height="200" border="2px_solid_black" crop="pad"  />
             <h3><span th:text="${hack.name}"></span></h3>
-            <p> <span th:text="${hack.startDate}"></span>
+            <p> <span th:text="${hack.startDate}">-</span>
             <span th:text="${hack.endDate}"></span></p>
             <p><span th:text="${hack.city}"></span>,
                 <span th:text="${hack.state}"></span></p>
+                <p>Total views: <span th:text="${hack.counter}"></span></p>
             </a>
-        </div><br/>
-    </div><br />
-    <br/>
+          </div><br/>
+       </div>
+    </div>
 </div><br />
     <br />
 </div>

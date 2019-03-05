@@ -16,11 +16,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Map;
 
 @Controller
 public class HomeController {
 
+//    int count =0;
 
     @Autowired
     EmailService emailService;
@@ -97,4 +99,14 @@ public class HomeController {
             emailService.SendSimpleEmail(getEmailTo,"Thank you for providing your information. You will be contacted soon for further course of action.");
         return "success";
     }
+    @RequestMapping("/counter/{id}")
+        public String gettingViews(@PathVariable("id") long id){
+        Hackathon hackathon = hackRepo.findById(id).get();
+        int counter = hackathon.getCounter();
+        counter+=1;
+        hackathon.setCounter(counter);
+        hackRepo.save(hackathon);
+
+        return "redirect:"+ hackathon.getWebLink();
+        }
 }

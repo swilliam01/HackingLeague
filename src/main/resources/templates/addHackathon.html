@@ -23,13 +23,13 @@
               th:errors="*{name}">Hackathon Name Error</span>
         <input type="text" id="name" class="form-control" placeholder="Hack Name"  th:field="*{name}" /><br />
 
-        <label for="startDate">Start Date:</label>
+        <label for="startDate">Start Date(MM/DD):</label>
         <span th:if="${#fields.hasErrors('startDate')}"
               th:errors="*{startDate}">Start Date Error</span>
         <input type="text" id="startDate" class="form-control" placeholder="Start Date"
                th:field="*{startDate}" /><br />
 
-        <label for="endDate">End Date:</label>
+        <label for="endDate">End Date(MM/DD):</label>
         <span th:if="${#fields.hasErrors('endDate')}"
               th:errors="*{endDate}">End Date Error</span>
         <input type="text" id="endDate" class="form-control" placeholder="End Date"
